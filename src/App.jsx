@@ -1,35 +1,30 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// import { useState } from "react";
+import datas from "../data.json";
+import "./App.css";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export default function App() {
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <section className="ml-[100px]">
+      <h1 className="px-6 font-bold mt-10 text-4xl">Desserts</h1>
+      <div className="h-[100vh]  p-6 pt-5 grid grid-cols-3 max-w-[850px]  gap-2">
+        {datas.map((data) => (
+          <ul className="">
+            <ShoppingCard data={data} key={data.id} />
+          </ul>
+        ))}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </section>
+  );
 }
 
-export default App
+function ShoppingCard({data}) {
+  return (
+    <li>
+      <img className="rounded-[5px] w-[250px]" src={data.image.desktop} alt={data.name} />
+      <span className="text-[1rem] leading-6 text-Rose500">{data.category}</span>
+      <h1 className="text-[1rem] font-semibold leading-5 text-Rose900">{data.name}</h1>
+      <h4 className="text-Red">${(data.price)}</h4>
+      
+    </li>
+  );
+}
